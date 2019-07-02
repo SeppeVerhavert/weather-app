@@ -4,10 +4,10 @@ let searchMethod = "q";
 
 document.getElementById('searchBtn').addEventListener('click', checkInput);
 
-let cityHeader = document.getElementById("cityHeader");
-let temperatureElement = document.getElementById("temperature");
-let weatherDescriptionHeader = document.getElementById("weatherDiscriptionHeader");
-let Icons = document.getElementById("iconDiv");
+let cityHeader = document.getElementsByClassName("cityHeader")[0];
+let temperatureElement = document.getElementsByClassName("temperature")[0];
+let weatherDescriptionHeader = document.getElementsByClassName("weatherDiscriptionHeader")[0];
+let Icons = document.getElementsByClassName("iconDiv")[0];
 
 let week = [];
 let dayOne = [];
@@ -36,8 +36,8 @@ function showData(resultFromServer) {
 
     for(i=0; i < resultFromServer.list.length; i+=8){
         week.push(resultFromServer.list[i].main);
+        pushDays();
     }
-    pushDays();
 }
 
 function pushDays() {
