@@ -55,7 +55,29 @@ function checkInput() {
 }
 
 function applyIcon() {
-    if (weatherIcon === "10d") { //LIGHT RAIN
+    if 
+    (weatherIcon === "01d") { //CLEAR SKY
+        document.querySelector(".fa-sun").style.display = "block";
+    } else if 
+    (weatherIcon === "02d") { //FEW CLOUDS
+        document.querySelector(".fa-cloud-sun").style.display = "block";
+    } else if 
+    (weatherIcon === "03d" || weatherIcon === "04d") { //SCATTERED OR BROKEN CLOUDS
+        document.querySelector(".fa-cloud").style.display = "block";
+    } else if 
+    (weatherIcon === "09d") { //SHOWER RAIN
+        document.querySelector(".fa-cloud-showers-heavy").style.display = "block";
+    } else if 
+    (weatherIcon === "10d") { //RAIN
         document.querySelector(".fa-cloud-sun-rain").style.display = "block";
+    } else if 
+    (weatherIcon === "11d") { //THUNDERSTORM
+        document.querySelector(".fa-bolt").style.display = "block";
+    } else if 
+    (weatherIcon === "13d") { //SNOW
+        document.querySelector(".fa-snowflake").style.display = "block";
+    } else if 
+    (weatherIcon === "50d") { //FOG
+        document.querySelector(".fa-smog").style.display = "block";
     }
 }
