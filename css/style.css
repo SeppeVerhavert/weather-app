@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}    
+
+body {
+    width: 50%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.container {
+    text-align: center;
+    background-color: pink;
+}
+
+.weatherContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.dayContainer {
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 3px;
+}
+
