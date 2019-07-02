@@ -9,18 +9,12 @@ let temperatureElement = document.getElementById("temperature");
 let weatherDescriptionHeader = document.getElementById("weatherDiscriptionHeader");
 let Icons = document.getElementById("iconDiv");
 
-// let day1 = [];
-// let day2 = [];
-// let day3 = [];
-// let day4 = [];
-// let day5 = [];
-// let days = [day1, day2, day3, day4, day5];
-
-// function logArrayElements(element, index, array) {
-//     console.log(element, index, array);
-// }
-
-// days.forEach(logArrayElements);
+let week = [];
+let dayOne = [];
+let dayTwo = [];
+let dayThree = [];
+let dayFour = [];
+let dayFive = [];
 
 function searchWeather(searchTerm) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
@@ -32,11 +26,6 @@ function searchWeather(searchTerm) {
 }
 
 function showData(resultFromServer) {
-    // console.log(resultFromServer.list[0]);
-    // console.log(resultFromServer.list[8]);
-    // console.log(resultFromServer.list[16]);
-    // console.log(resultFromServer.list[24]);
-    // console.log(resultFromServer.list[32]);
 
     cityHeader.innerHTML = resultFromServer.city.name;
     temperatureElement.innerHTML = Math.floor(resultFromServer.list[0].main.temp) + ' °C';
@@ -44,6 +33,16 @@ function showData(resultFromServer) {
     weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
     weatherIcon = resultFromServer.list[0].weather[0].icon;
     applyIcon();
+
+    for(i=0; i < resultFromServer.list.length; i+=8){
+        week.push(resultFromServer.list[i].main);
+    }
+
+    dayOne.push(week[0]);
+    dayTwo.push(week[1]);
+    dayThree.push(week[2]);
+    dayFour.push(week[3]);
+    dayFive.push(week[4]);
 }
 
 function checkInput() {
