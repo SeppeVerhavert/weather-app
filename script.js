@@ -22,20 +22,16 @@ function searchWeather(searchTerm) {
 }
 
 function init(resultFromServer) {
-    console.log(resultFromServer.list[0]);
-    console.log(resultFromServer.list[5]);
-    console.log(resultFromServer.list[13]);
-    console.log(resultFromServer.list[21]);
-    console.log(resultFromServer.list[29]);
+    // console.log(resultFromServer.list[0]);
+    // console.log(resultFromServer.list[5]);
+    // console.log(resultFromServer.list[13]);
+    // console.log(resultFromServer.list[21]);
+    // console.log(resultFromServer.list[29]);
 
     let resultDesciption = resultFromServer.list[0].weather[0].description;
     weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
-
     temperatureElement.innerHTML = Math.floor(resultFromServer.list[0].main.temp) + ' °C';
-
     weatherIcon = resultFromServer.list[0].weather[0].icon;
-    console.log(weatherIcon);
-
     cityHeader.innerHTML = resultFromServer.city.name;
     applyIcon();
 }
@@ -47,29 +43,29 @@ function checkInput() {
 }
 
 function applyIcon() {
-    if
-        (weatherIcon === "01d") { //CLEAR SKY
+    if //CLEAR SKY
+        (weatherIcon === "01d") { 
         iconDiv.innerHTML = '<i class="fas fa-sun"></i>';
-    } else if
-        (weatherIcon === "02d") { //FEW CLOUDS
+    } else if //FEW CLOUDS
+        (weatherIcon === "02d") { 
         iconDiv.innerHTML = '<i class="fas fa-cloud-sun"></i>';
-    } else if
-        (weatherIcon === "03d" || weatherIcon === "04d") { //SCATTERED OR BROKEN CLOUDS
+    } else if //SCATTERED OR BROKEN CLOUDS
+        (weatherIcon === "03d" || weatherIcon === "04d") { 
         iconDiv.innerHTML = '<i class="fas fa-cloud"></i>';
-    } else if
-        (weatherIcon === "09d") { //SHOWER RAIN
+    } else if //SHOWER RAIN
+        (weatherIcon === "09d") { 
         iconDiv.innerHTML = '<i class="fas fa-cloud-sun-rain"></i>';
-    } else if
-        (weatherIcon === "10d") { //RAIN
+    } else if //RAIN
+        (weatherIcon === "10d") { 
         iconDiv.innerHTML = '<i class="fas fa-cloud-showers-heavy"></i>';
-    } else if
-        (weatherIcon === "11d") { //THUNDERSTORM
+    } else if //THUNDERSTORM
+        (weatherIcon === "11d") { 
         iconDiv.innerHTML = '<i class="fas fa-bolt"></i>';
-    } else if
-        (weatherIcon === "13d") { //SNOW
+    } else if //SNOW
+        (weatherIcon === "13d") { 
         iconDiv.innerHTML = '<i class="far fa-snowflake"></i>';
-    } else if
-        (weatherIcon === "50d") { //FOG
+    } else if //FOG 
+        (weatherIcon === "50d") { 
         iconDiv.innerHTML = '<i class="fas fa-smog"></i>';
     }
 }
