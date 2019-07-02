@@ -37,7 +37,10 @@ function showData(resultFromServer) {
     for(i=0; i < resultFromServer.list.length; i+=8){
         week.push(resultFromServer.list[i].main);
     }
+    pushDays();
+}
 
+function pushDays() {
     dayOne.push(week[0]);
     dayTwo.push(week[1]);
     dayThree.push(week[2]);
