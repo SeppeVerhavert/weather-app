@@ -1,5 +1,5 @@
 let appId = '51edef6c4976ee55fb94fa75f9d29de3';
-let units = 'imperial';
+let units = 'metric';
 let searchMethod = "q";
 
 document.getElementById('searchBtn').addEventListener('click', checkInput);
@@ -7,20 +7,20 @@ document.getElementById('searchBtn').addEventListener('click', checkInput);
 let cityHeader = document.getElementById("cityHeader");
 let temperatureElement = document.getElementById("temperature");
 let weatherDescriptionHeader = document.getElementById("weatherDiscriptionHeader");
-let weatherIcon = document.getElementById("weatherIcon");
+let Icons = document.getElementById("iconDiv");
 
-let day1 = [];
-let day2 = [];
-let day3 = [];
-let day4 = [];
-let day5 = [];
-let days = [day1, day2, day3, day4, day5];
+// let day1 = [];
+// let day2 = [];
+// let day3 = [];
+// let day4 = [];
+// let day5 = [];
+// let days = [day1, day2, day3, day4, day5];
 
-function logArrayElements(element, index, array) {
-    console.log(element, index, array);
-}
+// function logArrayElements(element, index, array) {
+//     console.log(element, index, array);
+// }
 
-days.forEach(logArrayElements);
+// days.forEach(logArrayElements);
 
 function searchWeather(searchTerm) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
@@ -55,27 +55,27 @@ function checkInput() {
 function applyIcon() {
     if //CLEAR SKY
         (weatherIcon === "01d") {
-        weatherIcon.innerHTML = '<i class="fas fa-sun"></i>';
+        Icons.innerHTML = '<i class="fas fa-sun"></i>';
     } else if //FEW CLOUDS
         (weatherIcon === "02d") {
-        weatherIcon.innerHTML = '<i class="fas fa-cloud-sun"></i>';
+        Icons.innerHTML = '<i class="fas fa-cloud-sun"></i>';
     } else if //SCATTERED OR BROKEN CLOUDS
         (weatherIcon === "03d" || weatherIcon === "04d") {
-        weatherIcon.innerHTML = '<i class="fas fa-cloud"></i>';
+        Icons.innerHTML = '<i class="fas fa-cloud"></i>';
     } else if //SHOWER RAIN
         (weatherIcon === "09d") {
-        weatherIcon.innerHTML = '<i class="fas fa-cloud-sun-rain"></i>';
+        Icons.innerHTML = '<i class="fas fa-cloud-sun-rain"></i>';
     } else if //RAIN
         (weatherIcon === "10d") {
-        weatherIcon.innerHTML = '<i class="fas fa-cloud-showers-heavy"></i>';
+        Icons.innerHTML = '<i class="fas fa-cloud-showers-heavy"></i>';
     } else if //THUNDERSTORM
         (weatherIcon === "11d") {
-        weatherIcon.innerHTML = '<i class="fas fa-bolt"></i>';
+        Icons.innerHTML = '<i class="fas fa-bolt"></i>';
     } else if //SNOW
         (weatherIcon === "13d") {
-        weatherIcon.innerHTML = '<i class="far fa-snowflake"></i>';
+        Icons.innerHTML = '<i class="far fa-snowflake"></i>';
     } else if //FOG 
         (weatherIcon === "50d") {
-        weatherIcon.innerHTML = '<i class="fas fa-smog"></i>';
+        Icons.innerHTML = '<i class="fas fa-smog"></i>';
     }
 }
