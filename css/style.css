@@ -5,16 +5,19 @@
 
 body {
     width: 50%;
-    margin: 5% auto;
+    margin: 10% auto;
     box-sizing: border-box;
 }
 
 .container {
     text-align: center;
     background-color: pink;
-    padding-bottom: 5%;
+    padding: 0 5% 5% 5%;
 }
 
+.searchContainer {
+    padding-top: 10px;
+}
 .weatherContainer {
     display: flex;
     flex-wrap: wrap;
@@ -26,11 +29,19 @@ body {
 }
 
 .dayContainer {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     background-color: brown;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 3px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
+.firstDay {
+    width: 100%;
+}
+
+.iconDiv {
+    font-size: 100px;
+    color: #2bffed;
+    filter: drop-shadow(0 0 0.6rem rgb(0, 0, 0));
+}
