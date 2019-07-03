@@ -73,27 +73,27 @@ function checkInput() {
 function applyIcon() {
     if //CLEAR SKY
         (weatherIcon === "01d") {
-        Icons.innerHTML = '<i class="fas fa-sun"></i>';
+        Icons.innerHTML = '<img src="./images/sun-solid.png">';
     } else if //FEW CLOUDS
         (weatherIcon === "02d") {
-        Icons.innerHTML = '<i class="fas fa-cloud-sun"></i>';
+        Icons.innerHTML = '<img src="./images/cloud-sun-solid.png">';
     } else if //SCATTERED OR BROKEN CLOUDS
         (weatherIcon === "03d" || weatherIcon === "04d") {
-        Icons.innerHTML = '<i class="fas fa-cloud"></i>';
+        Icons.innerHTML = '<img src="./images/cloud-solid.png">';
     } else if //SHOWER RAIN
         (weatherIcon === "09d") {
-        Icons.innerHTML = '<i class="fas fa-cloud-sun-rain"></i>';
+        Icons.innerHTML = '<img src="./images/cloud-showers-heavy-solid.png">';
     } else if //RAIN
         (weatherIcon === "10d") {
-        Icons.innerHTML = '<i class="fas fa-cloud-showers-heavy"></i>';
+        Icons.innerHTML = '<img src="./images/cloud-sun-rain-solid.png">';
     } else if //THUNDERSTORM
         (weatherIcon === "11d") {
-        Icons.innerHTML = '<i class="fas fa-bolt"></i>';
+        Icons.innerHTML = '<img src="./images/thunderstorm-solid.png">';
     } else if //SNOW
         (weatherIcon === "13d") {
-        Icons.innerHTML = '<i class="far fa-snowflake"></i>';
+        Icons.innerHTML = '<img src="./images/snowflake-solid.png">';
     } else if //FOG 
         (weatherIcon === "50d") {
-        Icons.innerHTML = '<i class="fas fa-smog"></i>';
+        Icons.innerHTML = '<img src="./images/smog-solid.png">';
     }
 }
