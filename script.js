@@ -14,6 +14,7 @@ let dayFour = [];
 let dayFive = [];
 
 let j = 0;
+let options = { weekday: 'long' };
 
 function searchWeather(searchTerm) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
@@ -26,21 +27,22 @@ function searchWeather(searchTerm) {
 
 function showData(resultFromServer) {
 
-    for (j = 0; j <= week.length; j += 1) {
+    for (j = 0; j != 5; j += 1) {
         let k = (j * 8) - 1;
 
         if (j === 0) {
             k = 0;
         }
-        console.log(j);
-        console.log(k);
 
         let cityHeader = document.getElementsByClassName("cityHeader")[0];
+        let dayOfWeek = document.getElementsByClassName("dateOfWeek")[j];
         let temperatureElement = document.getElementsByClassName("temperature")[j];
         let weatherDescriptionHeader = document.getElementsByClassName("weatherDiscriptionHeader")[j];
         Icons = document.getElementsByClassName("iconDiv")[j];
 
         cityHeader.innerHTML = "You searched on " + resultFromServer.city.name;
+        date = new Date(resultFromServer.list[k].dt * 1000);
+        dayOfWeek.innerHTML = date.toLocaleDateString('en', options);
         temperatureElement.innerHTML = Math.floor(resultFromServer.list[k].main.temp) + ' °C';
         let resultDesciption = resultFromServer.list[k].weather[0].description;
         weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
