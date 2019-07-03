@@ -72,13 +72,13 @@ function checkInput() {
 
 function applyIcon() {
     if //CLEAR SKY
-        (weatherIcon === "01d") {
+        (weatherIcon === "01d" || weatherIcon === "01n") {
         Icons.innerHTML = '<img src="./images/sun-solid.png">';
     } else if //FEW CLOUDS
-        (weatherIcon === "02d") {
+        (weatherIcon === "02d" || weatherIcon === "02n") {
         Icons.innerHTML = '<img src="./images/cloud-sun-solid.png">';
     } else if //SCATTERED OR BROKEN CLOUDS
-        (weatherIcon === "03d" || weatherIcon === "04d") {
+        (weatherIcon === "03d" || weatherIcon === "04d" || weatherIcon === "03n" || weatherIcon === "04n") {
         Icons.innerHTML = '<img src="./images/cloud-solid.png">';
     } else if //SHOWER RAIN
         (weatherIcon === "09d") {
