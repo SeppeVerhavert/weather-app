@@ -16,8 +16,12 @@ body {
 
 .weatherContainer {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
+}
+
+.cityHeader {
+    width: 100%;
 }
 
 .dayContainer {

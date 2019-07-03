@@ -4,10 +4,7 @@ let searchMethod = "q";
 
 document.getElementById('searchBtn').addEventListener('click', checkInput);
 
-let cityHeader = document.getElementsByClassName("cityHeader")[0];
-let temperatureElement = document.getElementsByClassName("temperature")[0];
-let weatherDescriptionHeader = document.getElementsByClassName("weatherDiscriptionHeader")[0];
-let Icons = document.getElementsByClassName("iconDiv")[0];
+let Icons;
 
 let week = [];
 let dayOne = [];
@@ -27,16 +24,31 @@ function searchWeather(searchTerm) {
 
 function showData(resultFromServer) {
 
-    cityHeader.innerHTML = resultFromServer.city.name;
-    temperatureElement.innerHTML = Math.floor(resultFromServer.list[0].main.temp) + ' °C';
-    let resultDesciption = resultFromServer.list[0].weather[0].description;
-    weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
-    weatherIcon = resultFromServer.list[0].weather[0].icon;
-    applyIcon();
+    let j = 0;
+    let k = j*8;
+    console.log(week.length);
+    console.log(j);
 
-    for(i=0; i < resultFromServer.list.length; i+=8){
-        week.push(resultFromServer.list[i].main);
-        pushDays();
+    for (j = 0; j <= week.length; j += 1) {
+        let cityHeader = document.getElementsByClassName("cityHeader")[0];
+        let temperatureElement = document.getElementsByClassName("temperature")[j];
+        let weatherDescriptionHeader = document.getElementsByClassName("weatherDiscriptionHeader")[j];
+        Icons = document.getElementsByClassName("iconDiv")[j];
+
+        cityHeader.innerHTML = "You searched on " + resultFromServer.city.name;
+        temperatureElement.innerHTML = Math.floor(resultFromServer.list[k].main.temp) + ' °C';
+        let resultDesciption = resultFromServer.list[j].weather[k].description;
+        weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
+        weatherIcon = resultFromServer.list[j].weather[k].icon;
+        applyIcon();
+
+        for (i = 0; i < resultFromServer.list.length; i += 8) {
+            week.push(resultFromServer.list[i].main);
+            pushDays();
+        }
+
+        console.log(week.length);
+        console.log(j);
     }
 }
 
