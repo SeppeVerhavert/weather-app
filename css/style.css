@@ -5,13 +5,14 @@
 
 body {
     width: 50%;
-    margin: 10% auto;
+    margin: 5% auto;
     box-sizing: border-box;
 }
 
 .container {
     text-align: center;
     background-color: pink;
+    padding-bottom: 5%;
 }
 
 .weatherContainer {

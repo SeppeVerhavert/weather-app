@@ -13,6 +13,8 @@ let dayThree = [];
 let dayFour = [];
 let dayFive = [];
 
+let j = 0;
+
 function searchWeather(searchTerm) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
         .then((result) => {
@@ -24,12 +26,15 @@ function searchWeather(searchTerm) {
 
 function showData(resultFromServer) {
 
-    let j = 0;
-    let k = j*8;
-    console.log(week.length);
-    console.log(j);
-
     for (j = 0; j <= week.length; j += 1) {
+        let k = (j * 8) - 1;
+
+        if (j === 0) {
+            k = 0;
+        }
+        console.log(j);
+        console.log(k);
+
         let cityHeader = document.getElementsByClassName("cityHeader")[0];
         let temperatureElement = document.getElementsByClassName("temperature")[j];
         let weatherDescriptionHeader = document.getElementsByClassName("weatherDiscriptionHeader")[j];
@@ -37,18 +42,15 @@ function showData(resultFromServer) {
 
         cityHeader.innerHTML = "You searched on " + resultFromServer.city.name;
         temperatureElement.innerHTML = Math.floor(resultFromServer.list[k].main.temp) + ' °C';
-        let resultDesciption = resultFromServer.list[j].weather[k].description;
+        let resultDesciption = resultFromServer.list[k].weather[0].description;
         weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
-        weatherIcon = resultFromServer.list[j].weather[k].icon;
+        weatherIcon = resultFromServer.list[k].weather[0].icon;
         applyIcon();
 
         for (i = 0; i < resultFromServer.list.length; i += 8) {
             week.push(resultFromServer.list[i].main);
             pushDays();
         }
-
-        console.log(week.length);
-        console.log(j);
     }
 }
 
