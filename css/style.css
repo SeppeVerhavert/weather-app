@@ -5,6 +5,11 @@
     font-family: 'Julius Sans One', sans-serif;
 }    
 
+html {
+    background: rgb(226,233,104);
+    background: radial-gradient(circle, rgba(226,233,104,0.9892157546612395) 0%, rgba(148,187,233,1) 100%);
+}
+
 body {
     width: 50%;
     margin: 5% auto;
@@ -13,7 +18,7 @@ body {
 
 .container {
     text-align: center;
-    background-color: pink;
+    background-color: rgba(0, 0, 0, 0.281);
     padding: 0 5% 5% 5%;
     border-radius: 10px;
     color: white;
@@ -21,9 +26,28 @@ body {
 }
 
 .searchContainer {
-    padding-top: 10px;
+    padding-top: 30px;
     overflow: auto;
 }
+
+button {
+    width: 20%;
+    background-color: rgb(148,187,233);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+input {
+    width: 70%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+}
+
 .weatherContainer {
     display: flex;
     flex-wrap: wrap;
@@ -41,13 +65,11 @@ body {
 .dayContainer {
     width: 160px;
     height: 200px;
-    background-color: brown;
+    background-color: rgba(148,187,233,1);
     border-radius: 10px;
     margin: 5px;
-    padding: auto;
+    padding-top: 10px;
     font-size: 1.1rem;
-    box-sizing: border-box;
-    align-self: center;
 }
 
 .iconDiv {
@@ -67,12 +89,12 @@ body {
     height: 150px;
     font-size: 2rem;
     display: flex;
+    padding-top: 0;
 }
 
 .firstDayInfo {
+    margin: 0 auto 0 auto;
     align-self: center;
-    width: 40%;
-    margin-left: auto;
 }
 
 
