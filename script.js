@@ -16,6 +16,12 @@ let dayFive = [];
 let j = 0;
 let options = { weekday: 'long' };
 
+function checkInput() {
+    let searchTerm = document.getElementById('searchInput').value;
+    if (searchTerm)
+        searchWeather(searchTerm);
+}
+
 function searchWeather(searchTerm) {
     fetch(`http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
         .then((result) => {
@@ -37,15 +43,17 @@ function showData(resultFromServer) {
         let cityHeader = document.getElementsByClassName("cityHeader")[0];
         let dayOfWeek = document.getElementsByClassName("dateOfWeek")[j];
         let temperatureElement = document.getElementsByClassName("temperature")[j];
-        let weatherDescriptionHeader = document.getElementsByClassName("weatherDiscriptionHeader")[j];
+        let weatherDiscription = document.getElementsByClassName("weatherDiscription")[j];
         Icons = document.getElementsByClassName("iconDiv")[j];
 
-        cityHeader.innerHTML = "You searched on " + resultFromServer.city.name;
+        cityHeader.innerHTML = "5 day weather prediction for " + resultFromServer.city.name;
+
         date = new Date(resultFromServer.list[k].dt * 1000);
         dayOfWeek.innerHTML = date.toLocaleDateString('en', options);
+        
         temperatureElement.innerHTML = Math.floor(resultFromServer.list[k].main.temp) + ' °C';
         let resultDesciption = resultFromServer.list[k].weather[0].description;
-        weatherDescriptionHeader.innerText = resultDesciption.charAt(0).toUpperCase() + resultDesciption.slice(1);
+        weatherDiscription.innerText = resultDesciption;
         weatherIcon = resultFromServer.list[k].weather[0].icon;
         applyIcon();
 
@@ -64,36 +72,30 @@ function pushDays() {
     dayFive.push(week[4]);
 }
 
-function checkInput() {
-    let searchTerm = document.getElementById('searchInput').value;
-    if (searchTerm)
-        searchWeather(searchTerm);
-}
-
 function applyIcon() {
     if //CLEAR SKY
         (weatherIcon === "01d" || weatherIcon === "01n") {
-        Icons.innerHTML = '<img src="./images/sun-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-sun"></i>';
     } else if //FEW CLOUDS
         (weatherIcon === "02d" || weatherIcon === "02n") {
-        Icons.innerHTML = '<img src="./images/cloud-sun-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-cloud-sun"></i>';
     } else if //SCATTERED OR BROKEN CLOUDS
         (weatherIcon === "03d" || weatherIcon === "04d" || weatherIcon === "03n" || weatherIcon === "04n") {
-        Icons.innerHTML = '<img src="./images/cloud-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-cloud"></i>';
     } else if //SHOWER RAIN
         (weatherIcon === "09d") {
-        Icons.innerHTML = '<img src="./images/cloud-showers-heavy-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-cloud-showers-heavy"></i>';
     } else if //RAIN
         (weatherIcon === "10d") {
-        Icons.innerHTML = '<img src="./images/cloud-sun-rain-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-cloud-rain"></i>';
     } else if //THUNDERSTORM
         (weatherIcon === "11d") {
-        Icons.innerHTML = '<img src="./images/thunderstorm-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-bolt"></i>';
     } else if //SNOW
         (weatherIcon === "13d") {
-        Icons.innerHTML = '<img src="./images/snowflake-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-snowflake"></i>';
     } else if //FOG 
         (weatherIcon === "50d") {
-        Icons.innerHTML = '<img src="./images/smog-solid.png">';
+        Icons.innerHTML = '<i class="fas fa-smog"></i>';
     }
 }
