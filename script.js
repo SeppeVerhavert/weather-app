@@ -23,7 +23,7 @@ function checkInput() {
 }
 
 function searchWeather(searchTerm) {
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
         .then((result) => {
             return result.json();
         }).then((res) => {
