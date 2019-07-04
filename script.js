@@ -59,8 +59,8 @@ function showData(serverData) {
         let weatherDiscription = document.getElementsByClassName("weatherDiscription")[j];
         Icons = document.getElementsByClassName("iconDiv")[j];
 
-        cityHeader.innerHTML = "5 day weather prediction for " + resultFromServer.city.name;
-        
+        cityHeader.innerHTML = "5 day weather prediction for " + serverData.city.name;
+
         date = new Date(serverData.list[k].dt * 1000);
         dayOfWeek.innerHTML = date.toLocaleDateString('en', options);
 
