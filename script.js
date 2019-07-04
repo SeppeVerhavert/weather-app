@@ -26,13 +26,14 @@ function searchWeather(searchTerm) {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
         .then((result) => {
             return result.json();
-        }).then((res) => {
+        })
+        .then((res) => {
             showData(res);
         });
 }
 
 function showData(resultFromServer) {
-    for (j = 0; j != 5; j += 1) {
+    for (j = 0; j < 5; j += 1) {
         let k = (j * 8) - 1;
 
         if (j === 0) {
