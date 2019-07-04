@@ -2,7 +2,8 @@ let appId = '51edef6c4976ee55fb94fa75f9d29de3';
 let units = 'metric';
 let searchMethod = "q";
 
-document.getElementById('searchBtn').addEventListener('click', checkInput);
+document.getElementById('searchBtn').addEventListener('click', checkInput);errorMessages
+let error = document.getElementById('errorMessages');
 
 let Icons;
 
@@ -18,13 +19,20 @@ let options = { weekday: 'long' };
 
 function checkInput() {
     let searchTerm = document.getElementById('searchInput').value;
-    if (searchTerm)
+    
+    if (!searchTerm) {
+        error.innerHTML = "Please fill in the input field!";   
+        return; 
+    }
+    
+    if (searchTerm) {
+        error.display = "none";
         searchWeather(searchTerm);
         showdays();
+    }
 }
 
 function showdays() {
-    console.log(document.querySelectorAll(".weatherContainer"));    
     document.getElementsByClassName("weatherContainer")[0].style.visibility = "visible";
 }
 
@@ -45,11 +53,14 @@ function showData(serverData) {
             k = 0;
         }
 
+        let cityHeader = document.getElementsByClassName("cityHeader")[0];
         let dayOfWeek = document.getElementsByClassName("dateOfWeek")[j];
         let temperatureElement = document.getElementsByClassName("temperature")[j];
         let weatherDiscription = document.getElementsByClassName("weatherDiscription")[j];
         Icons = document.getElementsByClassName("iconDiv")[j];
 
+        cityHeader.innerHTML = "5 day weather prediction for " + resultFromServer.city.name;
+        
         date = new Date(serverData.list[k].dt * 1000);
         dayOfWeek.innerHTML = date.toLocaleDateString('en', options);
 

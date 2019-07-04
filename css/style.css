@@ -51,6 +51,11 @@ input {
     z-index: 2;
 }
 
+#errorMessages {
+    padding-top: 50px;
+    font-size: 2rem;
+}
+
 .weatherContainer {
     display: flex;
     flex-wrap: wrap;
