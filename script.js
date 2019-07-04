@@ -26,7 +26,7 @@ function checkInput() {
     }
     
     if (searchTerm) {
-        error.display = "none";
+        error.style.display = "none";
         searchWeather(searchTerm);
         showdays();
     }
