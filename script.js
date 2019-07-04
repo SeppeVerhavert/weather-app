@@ -85,7 +85,7 @@ function applyIcon() {
         (weatherIcon === "09d") {
         Icons.innerHTML = '<i class="fas fa-cloud-showers-heavy"></i>';
     } else if //RAIN
-        (weatherIcon === "10d") {
+        (weatherIcon === "10d" || weatherIcon === "10n") {
         Icons.innerHTML = '<i class="fas fa-cloud-rain"></i>';
     } else if //THUNDERSTORM
         (weatherIcon === "11d") {
