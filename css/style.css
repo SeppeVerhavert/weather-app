@@ -24,6 +24,7 @@ body {
     border-radius: 10px;
     color: white;
     font-weight: bold;
+    z-index: -1;
 }
 
 .searchContainer {
@@ -40,12 +41,14 @@ button {
     text-align: center;
     display: inline-block;
     border-radius: 10px;
+    z-index: 2;
 }
 
 input {
     width: 60%;
     padding: 12px 20px;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .weatherContainer {
@@ -78,7 +81,7 @@ input {
 }
 
 #firstIcon {
-    width: 25%;
+    margin: 0 auto 0 auto;
     font-size: 6rem;
     padding: auto;
     align-self: center;
@@ -95,6 +98,10 @@ input {
 .firstDayInfo {
     margin: 0 auto 0 auto;
     align-self: center;
+}
+
+.weatherContainer {
+    visibility: hidden;
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -120,8 +127,14 @@ input {
         width: 45%;
     }
 
+    #firstIcon {
+        margin: 0 auto 0 auto;
+        align-self: center;
+    }
+
     .firstDay {
         width: 100%;
+        font-size: 1.5rem;
     }
 
     input {
