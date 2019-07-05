@@ -55,12 +55,14 @@ input {
     display: block;
     padding-top: 25px;
     font-size: 2rem;
+    display: none;
 }
 
 #weatherContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    display: none;
 }
 
 .cityHeader {
