@@ -2,8 +2,12 @@ let appId = '51edef6c4976ee55fb94fa75f9d29de3';
 let units = 'metric';
 let searchMethod = "q";
 
-document.getElementById('searchBtn').addEventListener('click', checkInput);errorMessages
-let error = document.getElementById('errorMessages');
+document.getElementById('searchBtn').addEventListener('click', checkInput);
+let error = document.getElementsByClassName('errorMessages')[0];
+let dataContainer = document.getElementById("weatherContainer");
+
+dataContainer.style.display = "none";
+error.style.display = "none";
 
 let Icons;
 
@@ -19,21 +23,17 @@ let options = { weekday: 'long' };
 
 function checkInput() {
     let searchTerm = document.getElementById('searchInput').value;
-    
-    if (!searchTerm) {
-        error.innerHTML = "Please fill in the input field!";   
-        return; 
-    }
-    
+
     if (searchTerm) {
         error.style.display = "none";
+        dataContainer.style.display = "flex";
         searchWeather(searchTerm);
-        showdays();
     }
-}
 
-function showdays() {
-    document.getElementsByClassName("weatherContainer")[0].style.visibility = "visible";
+    if (!searchTerm) {
+        error.style.display = "block";
+        dataContainer.style.display = "none";
+    }
 }
 
 function searchWeather(searchTerm) {
@@ -46,6 +46,7 @@ function searchWeather(searchTerm) {
 }
 
 function showData(serverData) {
+
     for (j = 0; j != 5; j += 1) {
         let k = (j * 8) - 1;
 
