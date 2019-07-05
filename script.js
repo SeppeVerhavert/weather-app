@@ -1,14 +1,16 @@
-let appId = '51edef6c4976ee55fb94fa75f9d29de3';
-let units = 'metric';
-let searchMethod = "q";
+// VARIABLES
 
 document.getElementById('searchBtn').addEventListener('click', checkInput);
 let error = document.getElementsByClassName('errorMessages')[0];
 let dataContainer = document.getElementById("weatherContainer");
 
-dataContainer.style.display = "none";
-error.style.display = "none";
+let appId = '51edef6c4976ee55fb94fa75f9d29de3';
+let units = 'metric';
+let searchMethod = "q";
 
+let options = { weekday: 'long' };
+let j = 0;
+let k = 0;
 let Icons;
 
 let week = [];
@@ -18,8 +20,7 @@ let dayThree = [];
 let dayFour = [];
 let dayFive = [];
 
-let j = 0;
-let options = { weekday: 'long' };
+// CHECK IF TEXT IS IN INPUT FIELD
 
 function checkInput() {
     let searchTerm = document.getElementById('searchInput').value;
@@ -36,6 +37,8 @@ function checkInput() {
     }
 }
 
+// GET DATA FROM THE API
+
 function searchWeather(searchTerm) {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
         .then((result) => {
@@ -45,31 +48,14 @@ function searchWeather(searchTerm) {
         });
 }
 
+// APPLY DATA TO DAYS
+
 function showData(serverData) {
 
     for (j = 0; j != 5; j += 1) {
-        let k = (j * 8) - 1;
 
-        if (j === 0) {
-            k = 0;
-        }
-
-        let cityHeader = document.getElementsByClassName("cityHeader")[0];
-        let dayOfWeek = document.getElementsByClassName("dateOfWeek")[j];
-        let temperatureElement = document.getElementsByClassName("temperature")[j];
-        let weatherDiscription = document.getElementsByClassName("weatherDiscription")[j];
-        Icons = document.getElementsByClassName("iconDiv")[j];
-
-        cityHeader.innerHTML = "5 day weather prediction for " + serverData.city.name;
-
-        date = new Date(serverData.list[k].dt * 1000);
-        dayOfWeek.innerHTML = date.toLocaleDateString('en', options);
-
-        temperatureElement.innerHTML = Math.floor(serverData.list[k].main.temp) + ' °C';
-        let resultDesciption = serverData.list[k].weather[0].description;
-        weatherDiscription.innerText = resultDesciption;
-        weatherIcon = serverData.list[k].weather[0].icon;
-        applyIcon();
+        updateK();
+        applyData(serverData);
 
         for (i = 0; i < serverData.list.length; i += 8) {
             week.push(serverData.list[i].main);
@@ -78,15 +64,49 @@ function showData(serverData) {
     }
 }
 
-function pushDays() {
-    dayOne.push(week[0]);
-    dayTwo.push(week[1]);
-    dayThree.push(week[2]);
-    dayFour.push(week[3]);
-    dayFive.push(week[4]);
+function updateK() {
+    k = (j * 8);
+    if (j === 0) {
+        k = 0;
+    }
 }
 
-function applyIcon() {
+function applyData(serverData) {
+    applyCity(serverData);
+    applyDay(serverData);
+    applyTemp(serverData);
+    applyDescription(serverData);
+    applyIcon(serverData);
+}
+
+function applyCity(serverData) {
+    let cityHeader = document.getElementsByClassName("cityHeader")[0];
+    cityHeader.innerHTML = "5 day weather prediction for " + serverData.city.name;
+}
+
+function applyDay(serverData) {
+    let dayOfWeek = document.getElementsByClassName("dateOfWeek")[j];
+    date = new Date(serverData.list[k].dt * 1000);
+    dayOfWeek.innerHTML = date.toLocaleDateString('en', options);
+}
+
+function applyTemp(serverData) {
+    let temperatureElement = document.getElementsByClassName("temperature")[j];
+    temperatureElement.innerHTML = Math.floor(serverData.list[k].main.temp) + ' °C';
+}
+
+function applyDescription(serverData) {
+    let weatherDiscription = document.getElementsByClassName("weatherDiscription")[j];
+    weatherDiscription.innerText = serverData.list[k].weather[0].description;
+}
+
+function applyIcon(serverData) {
+    Icons = document.getElementsByClassName("iconDiv")[j];
+    weatherIcon = serverData.list[k].weather[0].icon;
+    selectIcon();
+}
+
+function selectIcon() {
     if //CLEAR SKY
         (weatherIcon === "01d" || weatherIcon === "01n") {
         Icons.innerHTML = '<i class="fas fa-sun"></i>';
@@ -112,4 +132,12 @@ function applyIcon() {
         (weatherIcon === "50d") {
         Icons.innerHTML = '<i class="fas fa-smog"></i>';
     }
+}
+
+function pushDays() {
+    dayOne.push(week[0]);
+    dayTwo.push(week[1]);
+    dayThree.push(week[2]);
+    dayFour.push(week[3]);
+    dayFive.push(week[4]);
 }
